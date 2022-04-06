@@ -30,7 +30,7 @@ export default function Login() {
       textAlign:'center'
     },
     card2:{
-      height:'5vh',
+      height:'7vh',
       marginTop:'2%'
     }
   })
