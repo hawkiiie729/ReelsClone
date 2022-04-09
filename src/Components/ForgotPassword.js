@@ -22,7 +22,7 @@ import { AuthContext } from '../Context/AuthContext';
 import {useNavigate,useHistory} from  'react-router-dom';
 
 
-export default function Login() {
+export default function ForgotPassword() {
   const store=useContext(AuthContext)
   console.log(store);
   const useStyles = makeStyles({
@@ -40,19 +40,34 @@ export default function Login() {
   })
   const classes=useStyles();
   const [email,setEmail]=useState('');
-  const [password,setPassword]=useState('');
   const [error,setError]=useState('');
+  const [info,setInfo]=useState('');
   const [loading,setLoading]=useState(false);
   const history = useNavigate();
-  const {login} =useContext(AuthContext);
+  const {forgotPassword} =useContext(AuthContext);
 
-  const handleClick=async()=>{ //yha hme sirf req lgani h kch upload ni krna 
+  const handleClick=async()=>{  
     try{
      setError('');
      setLoading(true)
-     let res=await login(email,password);
-     setLoading(false);
+     setInfo("An Email to reset password has been sent")
+     let res=await forgotPassword(email).then(()=>{
+      setLoading(false);
      history('/');
+
+     setTimeout(()=>{
+      setInfo('')
+      history('/login')
+
+     },4000) //4 sec
+     }).catch(err=>{
+       setError(err.message);
+       setTimeout(()=>{
+        setError('')
+       },5000);
+       setLoading(false);
+     });
+     
     }catch(err){
       setError(err)
       setTimeout(()=>{
@@ -96,16 +111,14 @@ export default function Login() {
          </div>
               <CardContent>
                   {error!='' && <Alert severity="error">{error}</Alert>}
+                  {info!='' && <Alert severity='success'>{info}</Alert>}
                   <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth={true} margin="dense" size='small' value={email} onChange={(e)=>setEmail(e.target.value)} />
-                  <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth={true} margin="dense" size='small' value={password} onChange={(e)=>setPassword(e.target.value)} />
-                 <Link to='/forgotpassword' style={{textDecoration:"none"}}> <Typography  className={classes.text2} color='primary' variant="subtitle1"  >
-                     Forget Password?
-                  </Typography></Link>
+                  
               </CardContent>
            
             <CardActions>
               <Button  color="primary" fullWidth={true} variant="contained" onClick={handleClick} loading={loading}> 
-              LogIn
+             Send Reset Email
               </Button>
             </CardActions>
           </Card>
