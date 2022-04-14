@@ -28,6 +28,7 @@ const firebaseConfig = {
  const firestore=firebase.firestore();
  export const database={
    users:firestore.collection('users'),
+   posts:firestore.collection('posts'),
    getTimeStamp:firebase.firestore.FieldValue.serverTimestamp, //taki latest post phle aaye ..timestamp k base pe sort kiya
  }
 
