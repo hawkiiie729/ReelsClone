@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import LinearProgress from '@mui/material/LinearProgress';
 import {v4 as uuidv4} from 'uuid'
 import { database,storage } from '../firebase';
+import MovieIcon from '@mui/icons-material/Movie';
+
 
 
 function UploadFile(props) {
@@ -32,7 +34,7 @@ const handleChange=async(file)=>{
   }
   let uid=uuidv4();
   setLoading(true);
-  const uploadTask=storage.ref('/posts/${uid/$(file.name)}').put(file); //task define kiya 
+  const uploadTask=storage.ref(`/posts/${uid}/${file.name}`).put(file); //task define kiya 
      uploadTask.on('state_changed',fn1,fn2,fn3);
      function fn1(snapshot){ //snapshot btyega ki kitna kaam ho chuka hai
        let progress=(snapshot.bytesTransferred / snapshot.totalBytes)*100;
@@ -96,8 +98,7 @@ const handleChange=async(file)=>{
                  loading={loading}
                 
                >
-             {/* <MovieIcon/> */}
-               Upload Video
+              <span> <MovieIcon/> &nbsp; Upload Video</span> 
                </Button>
            </label>
           {loading && <LinearProgress color="secondary" style={{marginTop:'3%'}}/>}
