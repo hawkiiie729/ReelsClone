@@ -5,13 +5,17 @@ import { database } from '../firebase';
 
 function Comments({postData}) {
   const [comments,setComments]=useState(null)
- useEffect(async()=>{
-   let arr=[]
-   for(let i=0;i<postData.comments.length;i++){
-     let data=await database.comments.doc(postData.comments[i]).get()
-     arr.push(data.data()) //saare comments ek specific post k liye aa jyege
-   } 
-   setComments(arr)
+ useEffect(()=>{
+   const  fetchData=async()=>{
+    let arr=[]
+    for(let i=0;i<postData.comments.length;i++){
+      let data=await database.comments.doc(postData.comments[i]).get()
+      arr.push(data.data()) //saare comments ek specific post k liye aa jyege
+    } 
+    setComments(arr)
+   }
+   fetchData();
+  
  },[postData])
 
   return (

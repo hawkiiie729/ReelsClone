@@ -7,6 +7,7 @@ import {BrowserRouter,Routes ,Route } from 'react-router-dom';
 import {AuthProvider} from './Context/AuthContext';
 import PrivateRoute from './Components/PrivateRoute';
 import ForgotPassword from './Components/ForgotPassword';
+import Profile from './Components/Profile';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             {/* <Route path='/' element={<Feed/>}/> */}
             <Route path='/forgotpassword' element={<ForgotPassword/>}/>
+            <Route path ='/profile/:id' element={<PrivateRoute><Profile/></PrivateRoute>}/>  
+            {/* hrr user ki profile alg hogi isliye id */}
             <Route path ='/' element={<PrivateRoute><Feed/></PrivateRoute>}/> 
           </Routes>
       

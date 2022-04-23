@@ -1,0 +1,8 @@
+.spacer{
+  min-height: 12vh;
+}
+.container{
+  min-height: 88vh;
+  margin-left: 18%;
+  margin-right: 18%;
+}
