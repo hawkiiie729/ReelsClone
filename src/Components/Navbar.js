@@ -62,7 +62,7 @@ export default function Navbar({userData}) {
   };
 
   const handleprofile=()=>{
-    navigate(`/profile/${userData.uid}`)
+    navigate(`/profile/${userData.userId}`)
   }
   const handlebannerclick=()=>{
     navigate('/')

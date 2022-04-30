@@ -7,17 +7,10 @@ import './Posts.css'
 import Avatar from '@mui/material/Avatar';
 import Like from './Like';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+
 import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions } from '@mui/material';
 import Like2 from './Like2';
 import AddComment from './AddComment';
 import Comments from './Comments';
